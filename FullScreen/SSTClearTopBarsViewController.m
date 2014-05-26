@@ -47,6 +47,15 @@
 #pragma mark - Private
 #pragma mark -
 
+- (void)prepareAnimationForNavigationBarWithDuration:(CGFloat)duration {
+    // prepare animation for navigation bar
+    CATransition *animation = [CATransition animation];
+    [animation setDuration:duration];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    [animation setType:kCATransitionFade];
+    [self.navigationController.navigationBar.layer addAnimation:animation forKey:nil];
+}
+
 - (void)hideTopBars:(BOOL)animated withCompletionBlock:(void (^)())completionBlock {
     // sets a clear background for the top bars
     
@@ -54,21 +63,17 @@
     
     CGFloat duration = animated ? 0.25f : 0.0f;
     
-    [CATransaction setCompletionBlock:completionBlock];
-    CATransition *animation = [CATransition animation];
-    [animation setDuration:duration];
-    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-    [animation setType:kCATransitionFade];
+    [self prepareAnimationForNavigationBarWithDuration:duration];
     
-    [self.navigationController.navigationBar.layer addAnimation:animation forKey:nil];
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:duration];
-    
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.shadowImage = [UIImage new];
-    
-    [UIView commitAnimations];
+    UIViewAnimationOptions options = UIViewAnimationOptionBeginFromCurrentState;
+    [UIView animateWithDuration:duration delay:0.0 options:options animations:^{
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+        self.navigationController.navigationBar.shadowImage = [UIImage new];
+    } completion:^(BOOL finished) {
+        if (finished && completionBlock) {
+            completionBlock();
+        }
+    }];
 }
 
 - (void)showTopBars:(BOOL)animated withCompletionBlock:(void (^)())completionBlock {
@@ -77,22 +82,18 @@
     _topBarsClear = FALSE;
     
     CGFloat duration = animated ? 0.25f : 0.0f;
-
-    CATransition *animation = [CATransition animation];
-    [CATransaction setCompletionBlock:completionBlock];
-    [animation setDuration:duration];
-    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-    [animation setType:kCATransitionFade];
     
-    [self.navigationController.navigationBar.layer addAnimation:animation forKey:nil];
+    [self prepareAnimationForNavigationBarWithDuration:duration];
     
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:duration];
-    
-    UIImage *backgroundImage = [SSTStyleKit imageOfBlueTopBarBackgroundImage];
-    [self.navigationController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
-    
-    [UIView commitAnimations];
+    UIViewAnimationOptions options = UIViewAnimationOptionBeginFromCurrentState;
+    [UIView animateWithDuration:duration delay:0.0 options:options animations:^{
+        UIImage *backgroundImage = [SSTStyleKit imageOfBlueTopBarBackgroundImage];
+        [self.navigationController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
+    } completion:^(BOOL finished) {
+        if (finished && completionBlock) {
+            completionBlock();
+        }
+    }];
 }
 
 #pragma mark - User Actions
@@ -104,10 +105,14 @@
 
 - (IBAction)toggleButtonTapped:(id)sender {
     if (_topBarsClear) {
-        [self showTopBars:TRUE withCompletionBlock:nil];
+        [self showTopBars:TRUE withCompletionBlock:^{
+            NSLog(@"Show!");
+        }];
     }
     else {
-        [self hideTopBars:TRUE withCompletionBlock:nil];
+        [self hideTopBars:TRUE withCompletionBlock:^{
+            NSLog(@"Hide!");
+        }];
     }
 }
 
@@ -119,12 +124,16 @@
     
     if (_topBarsClear) {
         if (scrollView.contentOffset.y > kCutOffPoint) {
-            [self showTopBars:TRUE withCompletionBlock:nil];
+            [self showTopBars:TRUE withCompletionBlock:^{
+                NSLog(@"Show!");
+            }];
         }
     }
     else {
         if (scrollView.contentOffset.y <= kCutOffPoint) {
-            [self hideTopBars:TRUE withCompletionBlock:nil];
+            [self hideTopBars:TRUE withCompletionBlock:^{
+                NSLog(@"Hide!");
+            }];
         }
     }
 }

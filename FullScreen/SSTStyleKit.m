@@ -32,11 +32,11 @@ static UIImage* _imageOfTopShadow = nil;
     // Colors Initialization
     _myBlueColor = [UIColor colorWithRed: 0 green: 0 blue: 0.251 alpha: 1];
     _myShadowGradientClearColor = [UIColor colorWithRed: 1 green: 1 blue: 1 alpha: 0];
-    _myShadowGradientBlackColor = [UIColor colorWithRed: 0 green: 0 blue: 0 alpha: 0.75];
+    _myShadowGradientBlackColor = [UIColor colorWithRed: 0 green: 0 blue: 0 alpha: 0.5];
 
     // Gradients Initialization
     CGFloat myShadowGradientLocations[] = {0, 0.75, 1};
-    _myShadowGradient = [PCGradient gradientWithColors: @[SSTStyleKit.myShadowGradientBlackColor, [UIColor colorWithRed: 0.5 green: 0.5 blue: 0.5 alpha: 0.375], SSTStyleKit.myShadowGradientClearColor] locations: myShadowGradientLocations];
+    _myShadowGradient = [PCGradient gradientWithColors: @[SSTStyleKit.myShadowGradientBlackColor, [UIColor colorWithRed: 0.5 green: 0.5 blue: 0.5 alpha: 0.25], SSTStyleKit.myShadowGradientClearColor] locations: myShadowGradientLocations];
 
 }
 

@@ -12,6 +12,8 @@
 
 #define kCutOffPoint 81.0f
 
+#define kDefineAnimationDuration 0.25f
+
 @interface SSTClearTopBarsViewController () <UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -61,7 +63,7 @@
     
     _topBarsClear = TRUE;
     
-    CGFloat duration = animated ? 0.25f : 0.0f;
+    CGFloat duration = animated ? kDefineAnimationDuration : 0.0f;
     
     [self prepareAnimationForNavigationBarWithDuration:duration];
     
@@ -81,7 +83,7 @@
     
     _topBarsClear = FALSE;
     
-    CGFloat duration = animated ? 0.25f : 0.0f;
+    CGFloat duration = animated ? kDefineAnimationDuration : 0.0f;
     
     [self prepareAnimationForNavigationBarWithDuration:duration];
     

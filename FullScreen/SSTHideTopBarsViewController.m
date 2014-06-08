@@ -111,15 +111,11 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     //NSLog(@"offset: %f", scrollView.contentOffset.y);
     
-    if (!self.navigationController.navigationBar.hidden) {
-        if (scrollView.contentOffset.y > kCutOffPoint) {
-            [self showTopView:TRUE withCompletionBlock:nil];
-        }
+    if (!self.navigationController.navigationBar.hidden && scrollView.contentOffset.y > kCutOffPoint) {
+        [self showTopView:TRUE withCompletionBlock:nil];
     }
-    else {
-        if (scrollView.contentOffset.y <= kCutOffPoint) {
-            [self hideTopView:TRUE withCompletionBlock:nil];
-        }
+    else if (self.navigationController.navigationBar.hidden && scrollView.contentOffset.y <= kCutOffPoint) {
+        [self hideTopView:TRUE withCompletionBlock:nil];
     }
 }
 

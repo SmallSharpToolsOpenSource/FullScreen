@@ -12,16 +12,20 @@
 
 #define kCutOffPoint 81.0f
 
+#define kTopImageHeight 145.0f
+
 #define kDefineAnimationDuration 0.25f
 
 @interface SSTClearTopBarsViewController () <UIScrollViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topImageHeightConstraint;
 
 @end
 
 @implementation SSTClearTopBarsViewController {
-    BOOL _topBarsClear;
+    BOOL _topBarsHidden;
 }
 
 - (void)viewDidLoad {
@@ -33,9 +37,6 @@
     
     UIBarButtonItem *backBarItem = [[UIBarButtonItem alloc] initWithTitle:@"back" style:UIBarButtonItemStyleBordered target:self action:@selector(backButtonTapped:)];
     self.navigationItem.leftBarButtonItem = backBarItem;
-    
-    UILabel *label = (UILabel *)[self.scrollView viewWithTag:1];
-    label.text = @"Aesthetic Marfa Shoreditch tattooed tousled meh. Flexitarian mustache put a bird on it, Austin trust fund brunch locavore Echo Park tattooed synth Neutra. Mlkshk tote bag squid, direct trade occupy swag Tumblr dreamcatcher pug. Church-key YOLO Wes Anderson mixtape chambray retro. Forage raw denim normcore, art party pop-up aesthetic cred selvage shabby chic. Slow-carb Pitchfork 3 wolf moon bespoke semiotics squid synth XOXO. Gastropub Kickstarter mlkshk pug, Brooklyn hoodie yr semiotics.\n\nEnnui beard ugh, banh mi post-ironic jean shorts pickled dreamcatcher you probably haven't heard of them McSweeney's raw denim roof party flexitarian ethnic whatever. Neutra wayfarers deep v scenester polaroid. Kogi roof party scenester asymmetrical Schlitz. Fashion axe squid Bushwick letterpress chambray. Kitsch 3 wolf moon sriracha Banksy asymmetrical. Austin literally mumblecore, beard pug VHS tousled you probably haven't heard of them selfies Helvetica quinoa Brooklyn ugh hashtag. Chillwave roof party raw denim pickled.\n\nSustainable flexitarian narwhal, readymade salvia Neutra kitsch raw denim. You probably haven't heard of them photo booth beard Portland normcore umami. Authentic polaroid ethnic, photo booth next level roof party vegan pickled High Life gluten-free pork belly. Forage pop-up tofu, art party iPhone pug four loko cornhole vinyl. Four loko meh bitters, master cleanse you probably haven't heard of them tousled Intelligentsia Carles trust fund farm-to-table asymmetrical normcore narwhal flannel. Literally High Life tofu shabby chic, selfies food truck kale chips blog cred freegan forage Cosby sweater Carles. Artisan food truck ugh authentic cred.";
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
@@ -61,7 +62,7 @@
 - (void)hideTopBars:(BOOL)animated withCompletionBlock:(void (^)())completionBlock {
     // sets a clear background for the top bars
     
-    _topBarsClear = TRUE;
+    _topBarsHidden = TRUE;
     
     CGFloat duration = animated ? kDefineAnimationDuration : 0.0f;
     
@@ -81,7 +82,7 @@
 - (void)showTopBars:(BOOL)animated withCompletionBlock:(void (^)())completionBlock {
     // sets the top bars to show an opaque background
     
-    _topBarsClear = FALSE;
+    _topBarsHidden = FALSE;
     
     CGFloat duration = animated ? kDefineAnimationDuration : 0.0f;
     
@@ -106,7 +107,7 @@
 }
 
 - (IBAction)toggleButtonTapped:(id)sender {
-    if (_topBarsClear) {
+    if (_topBarsHidden) {
         [self showTopBars:TRUE withCompletionBlock:^{
             NSLog(@"Show!");
         }];
@@ -118,25 +119,80 @@
     }
 }
 
+#pragma mark - UITableViewDataSource
+#pragma mark -
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 21;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *TopCellIdentifier = @"TopCell";
+    static NSString *BasicCellIdentifier = @"BasicCell";
+    
+    UITableViewCell *cell = nil;
+    
+    if (indexPath.row == 0) {
+        cell = [tableView dequeueReusableCellWithIdentifier:TopCellIdentifier forIndexPath:indexPath];
+    }
+    else {
+        cell = [tableView dequeueReusableCellWithIdentifier:BasicCellIdentifier forIndexPath:indexPath];
+        cell.textLabel.text = [NSString stringWithFormat:@"Row %li", (long)indexPath.row];
+        cell.backgroundColor = [UIColor clearColor];
+    }
+    
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
+#pragma mark -
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0) {
+        return 145.0f;
+    }
+    else {
+        return 44.0f;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.25 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [tableView deselectRowAtIndexPath:indexPath animated:TRUE];
+    });
+}
+
 #pragma mark - UIScrollViewDelegate
 #pragma mark -
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     //NSLog(@"offset: %f", scrollView.contentOffset.y);
+
+    // adjust the top image view
+    CGFloat topImageHeight = kTopImageHeight;
+    CGFloat yPos = 0.0f;
     
-    if (_topBarsClear) {
-        if (scrollView.contentOffset.y > kCutOffPoint) {
-            [self showTopBars:TRUE withCompletionBlock:^{
-                NSLog(@"Show!");
-            }];
-        }
+    if (scrollView.contentOffset.y < 0) {
+        topImageHeight += ABS(scrollView.contentOffset.y);
+        yPos += scrollView.contentOffset.y;
     }
-    else {
-        if (scrollView.contentOffset.y <= kCutOffPoint) {
-            [self hideTopBars:TRUE withCompletionBlock:^{
-                NSLog(@"Hide!");
-            }];
-        }
+    
+    UITableViewCell *cell = (UITableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    
+    if (cell) {
+        UIImageView *imageView = (UIImageView *)[cell viewWithTag:1];
+        NSAssert(imageView, @"Image View is required");
+        CGRect frame = imageView.frame;
+        frame.size.height = topImageHeight;
+        frame.origin.y = yPos;
+        imageView.frame = frame;
+    }
+    
+    if (_topBarsHidden && scrollView.contentOffset.y > kCutOffPoint) {
+        [self showTopBars:TRUE withCompletionBlock:nil];
+    }
+    else if (!_topBarsHidden && scrollView.contentOffset.y <= kCutOffPoint) {
+        [self hideTopBars:TRUE withCompletionBlock:nil];
     }
 }
 

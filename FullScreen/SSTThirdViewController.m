@@ -1,12 +1,12 @@
 //
-//  SSTClearTopBarsViewController.m
+//  SSTThirdViewController.m
 //  FullScreen
 //
-//  Created by Brennan Stehling on 5/25/14.
+//  Created by Brennan Stehling on 6/14/14.
 //  Copyright (c) 2014 SmallSharpTools. All rights reserved.
 //
 
-#import "SSTClearTopBarsViewController.h"
+#import "SSTThirdViewController.h"
 
 #import "SSTStyleKit.h"
 
@@ -16,15 +16,17 @@
 
 #define kDefineAnimationDuration 0.25f
 
-@interface SSTClearTopBarsViewController () <UIScrollViewDelegate>
+#define kTagCollectionView 1
+
+#define kTagImageView 1
+
+@interface SSTThirdViewController () <UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topImageHeightConstraint;
-
 @end
 
-@implementation SSTClearTopBarsViewController {
+@implementation SSTThirdViewController {
     BOOL _topBarsHidden;
 }
 
@@ -35,8 +37,16 @@
     self.navigationController.navigationBar.shadowImage = nil;
     [self hideTopBars:FALSE withCompletionBlock:nil];
     
-    UIBarButtonItem *backBarItem = [[UIBarButtonItem alloc] initWithTitle:@"back" style:UIBarButtonItemStyleBordered target:self action:@selector(backButtonTapped:)];
-    self.navigationItem.leftBarButtonItem = backBarItem;
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"back" style:UIBarButtonItemStyleBordered target:self action:nil];
+    self.navigationItem.backBarButtonItem = backButtonItem;
+    
+    UIEdgeInsets contentInset = self.tableView.contentInset;
+    contentInset.bottom = 50.0f;
+    self.tableView.contentInset = contentInset;
+    
+    UIEdgeInsets scrollIndicatorInsets = self.tableView.scrollIndicatorInsets;
+    scrollIndicatorInsets.bottom = 50.0f;
+    self.tableView.scrollIndicatorInsets = scrollIndicatorInsets;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
@@ -90,7 +100,7 @@
     
     UIViewAnimationOptions options = UIViewAnimationOptionBeginFromCurrentState;
     [UIView animateWithDuration:duration delay:0.0 options:options animations:^{
-        UIImage *backgroundImage = [SSTStyleKit imageOfBlueTopBarBackgroundImage];
+        UIImage *backgroundImage = [SSTStyleKit imageOfDarkTopBarBackgroundImage];
         [self.navigationController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
     } completion:^(BOOL finished) {
         if (finished && completionBlock) {
@@ -104,19 +114,6 @@
 
 - (IBAction)backButtonTapped:(id)sender {
     [self.navigationController popViewControllerAnimated:TRUE];
-}
-
-- (IBAction)toggleButtonTapped:(id)sender {
-    if (_topBarsHidden) {
-        [self showTopBars:TRUE withCompletionBlock:^{
-            NSLog(@"Show!");
-        }];
-    }
-    else {
-        [self hideTopBars:TRUE withCompletionBlock:^{
-            NSLog(@"Hide!");
-        }];
-    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -157,9 +154,37 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"Selected row %lu", (unsigned long)indexPath.row);
+
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.25 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [tableView deselectRowAtIndexPath:indexPath animated:TRUE];
     });
+}
+
+#pragma mark - UICollectionViewDataSource
+#pragma mark -
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return 4;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *PhotoCellIdentifier = @"PhotoCell";
+    
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:PhotoCellIdentifier forIndexPath:indexPath];
+    UIImageView *imageView = (UIImageView *)[cell viewWithTag:kTagImageView];
+    NSString *imageName = [NSString stringWithFormat:@"Landscape%lu.jpg", (unsigned long)indexPath.item+1];
+    UIImage *image = [UIImage imageNamed:imageName];
+    imageView.image = image;
+    
+    return cell;
+}
+
+#pragma mark - UICollectionViewDelegate
+#pragma mark -
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"Selected item %lu", (unsigned long)indexPath.item+1);
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -167,25 +192,35 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     //NSLog(@"offset: %f", scrollView.contentOffset.y);
-
+    
     // adjust the top image view
     CGFloat topImageHeight = kTopImageHeight;
     CGFloat yPos = 0.0f;
     
     if (scrollView.contentOffset.y < 0) {
-        topImageHeight += ABS(scrollView.contentOffset.y);
-        yPos += scrollView.contentOffset.y;
+        topImageHeight += MIN(kTopImageHeight, ABS(scrollView.contentOffset.y));
+        yPos += MIN(0, scrollView.contentOffset.y);
     }
     
-    UITableViewCell *cell = (UITableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    UITableViewCell *tableCell = (UITableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     
-    if (cell) {
-        UIImageView *imageView = (UIImageView *)[cell viewWithTag:1];
-        NSAssert(imageView, @"Image View is required");
-        CGRect frame = imageView.frame;
-        frame.size.height = topImageHeight;
-        frame.origin.y = yPos;
-        imageView.frame = frame;
+    if (tableCell) {
+        UICollectionView *collectionView = (UICollectionView *)[tableCell viewWithTag:kTagCollectionView];
+        if (collectionView) {
+            NSArray *indexPaths = [collectionView indexPathsForVisibleItems];
+            if (indexPaths.count) {
+                UICollectionViewCell *collectionCell = [collectionView cellForItemAtIndexPath:indexPaths[0]];
+                if (collectionCell) {
+                    UIImageView *imageView = (UIImageView *)[collectionCell viewWithTag:kTagImageView];
+                    NSAssert(imageView, @"Image View is required");
+                    CGRect frame = imageView.frame;
+                    frame.size.height = topImageHeight;
+                    frame.origin.y = yPos;
+                    imageView.frame = frame;
+                    //LOG_FRAME(@"frame", frame);
+                }
+            }
+        }
     }
     
     if (_topBarsHidden && scrollView.contentOffset.y > kCutOffPoint) {

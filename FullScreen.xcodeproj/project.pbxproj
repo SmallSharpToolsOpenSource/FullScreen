@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2688CF24194D1A9000C37DE3 /* SSTThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2688CF23194D1A9000C37DE3 /* SSTThirdViewController.m */; };
+		2688CF38194D447F00C37DE3 /* Landscape2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2688CF32194D447F00C37DE3 /* Landscape2.jpg */; };
+		2688CF39194D447F00C37DE3 /* Landscape2@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2688CF33194D447F00C37DE3 /* Landscape2@2x.jpg */; };
+		2688CF3A194D447F00C37DE3 /* Landscape3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2688CF34194D447F00C37DE3 /* Landscape3.jpg */; };
+		2688CF3B194D447F00C37DE3 /* Landscape3@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2688CF35194D447F00C37DE3 /* Landscape3@2x.jpg */; };
+		2688CF3C194D447F00C37DE3 /* Landscape4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2688CF36194D447F00C37DE3 /* Landscape4.jpg */; };
+		2688CF3D194D447F00C37DE3 /* Landscape4@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2688CF37194D447F00C37DE3 /* Landscape4@2x.jpg */; };
 		26B9858819328BF500ED601E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B9858719328BF500ED601E /* Foundation.framework */; };
 		26B9858A19328BF500ED601E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B9858919328BF500ED601E /* CoreGraphics.framework */; };
 		26B9858C19328BF500ED601E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B9858B19328BF500ED601E /* UIKit.framework */; };
@@ -14,7 +21,7 @@
 		26B9859419328BF500ED601E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B9859319328BF500ED601E /* main.m */; };
 		26B9859819328BF500ED601E /* SSTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B9859719328BF500ED601E /* SSTAppDelegate.m */; };
 		26B9859B19328BF500ED601E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26B9859919328BF500ED601E /* Main.storyboard */; };
-		26B9859E19328BF500ED601E /* SSTHideTopBarsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B9859D19328BF500ED601E /* SSTHideTopBarsViewController.m */; };
+		26B9859E19328BF500ED601E /* SSTFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B9859D19328BF500ED601E /* SSTFirstViewController.m */; };
 		26B985A019328BF500ED601E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26B9859F19328BF500ED601E /* Images.xcassets */; };
 		26B985A719328BF500ED601E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B985A619328BF500ED601E /* XCTest.framework */; };
 		26B985A819328BF500ED601E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B9858719328BF500ED601E /* Foundation.framework */; };
@@ -23,9 +30,9 @@
 		26B985B319328BF500ED601E /* FullScreenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B985B219328BF500ED601E /* FullScreenTests.m */; };
 		26B985BE19328CC000ED601E /* SSTBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B985BD19328CC000ED601E /* SSTBaseNavigationController.m */; };
 		26B985C119328FA100ED601E /* SSTStyleKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B985C019328FA100ED601E /* SSTStyleKit.m */; };
-		26B985C419329EDD00ED601E /* SSTClearTopBarsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B985C319329EDD00ED601E /* SSTClearTopBarsViewController.m */; };
-		26B985C71933D2E300ED601E /* Landscape.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 26B985C51933D2E300ED601E /* Landscape.jpg */; };
-		26B985C81933D2E300ED601E /* Landscape@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 26B985C61933D2E300ED601E /* Landscape@2x.jpg */; };
+		26B985C419329EDD00ED601E /* SSTSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B985C319329EDD00ED601E /* SSTSecondViewController.m */; };
+		26B985C71933D2E300ED601E /* Landscape1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 26B985C51933D2E300ED601E /* Landscape1.jpg */; };
+		26B985C81933D2E300ED601E /* Landscape1@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 26B985C61933D2E300ED601E /* Landscape1@2x.jpg */; };
 		D60674011E6849E48069C4DA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A962D410ED4BCD96492073 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +47,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2688CF22194D1A9000C37DE3 /* SSTThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTThirdViewController.h; sourceTree = "<group>"; };
+		2688CF23194D1A9000C37DE3 /* SSTThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTThirdViewController.m; sourceTree = "<group>"; };
+		2688CF32194D447F00C37DE3 /* Landscape2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Landscape2.jpg; sourceTree = SOURCE_ROOT; };
+		2688CF33194D447F00C37DE3 /* Landscape2@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Landscape2@2x.jpg"; sourceTree = SOURCE_ROOT; };
+		2688CF34194D447F00C37DE3 /* Landscape3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Landscape3.jpg; sourceTree = SOURCE_ROOT; };
+		2688CF35194D447F00C37DE3 /* Landscape3@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Landscape3@2x.jpg"; sourceTree = SOURCE_ROOT; };
+		2688CF36194D447F00C37DE3 /* Landscape4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Landscape4.jpg; sourceTree = SOURCE_ROOT; };
+		2688CF37194D447F00C37DE3 /* Landscape4@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Landscape4@2x.jpg"; sourceTree = SOURCE_ROOT; };
 		26B9858419328BF500ED601E /* FullScreen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FullScreen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26B9858719328BF500ED601E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		26B9858919328BF500ED601E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -51,8 +66,8 @@
 		26B9859619328BF500ED601E /* SSTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSTAppDelegate.h; sourceTree = "<group>"; };
 		26B9859719328BF500ED601E /* SSTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSTAppDelegate.m; sourceTree = "<group>"; };
 		26B9859A19328BF500ED601E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		26B9859C19328BF500ED601E /* SSTHideTopBarsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSTHideTopBarsViewController.h; sourceTree = "<group>"; };
-		26B9859D19328BF500ED601E /* SSTHideTopBarsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSTHideTopBarsViewController.m; sourceTree = "<group>"; };
+		26B9859C19328BF500ED601E /* SSTFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSTFirstViewController.h; sourceTree = "<group>"; };
+		26B9859D19328BF500ED601E /* SSTFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSTFirstViewController.m; sourceTree = "<group>"; };
 		26B9859F19328BF500ED601E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		26B985A519328BF500ED601E /* FullScreenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FullScreenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26B985A619328BF500ED601E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -63,10 +78,10 @@
 		26B985BD19328CC000ED601E /* SSTBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTBaseNavigationController.m; sourceTree = "<group>"; };
 		26B985BF19328FA100ED601E /* SSTStyleKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTStyleKit.h; sourceTree = "<group>"; };
 		26B985C019328FA100ED601E /* SSTStyleKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTStyleKit.m; sourceTree = "<group>"; };
-		26B985C219329EDD00ED601E /* SSTClearTopBarsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTClearTopBarsViewController.h; sourceTree = "<group>"; };
-		26B985C319329EDD00ED601E /* SSTClearTopBarsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTClearTopBarsViewController.m; sourceTree = "<group>"; };
-		26B985C51933D2E300ED601E /* Landscape.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Landscape.jpg; sourceTree = SOURCE_ROOT; };
-		26B985C61933D2E300ED601E /* Landscape@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Landscape@2x.jpg"; sourceTree = SOURCE_ROOT; };
+		26B985C219329EDD00ED601E /* SSTSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTSecondViewController.h; sourceTree = "<group>"; };
+		26B985C319329EDD00ED601E /* SSTSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTSecondViewController.m; sourceTree = "<group>"; };
+		26B985C51933D2E300ED601E /* Landscape1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Landscape1.jpg; sourceTree = SOURCE_ROOT; };
+		26B985C61933D2E300ED601E /* Landscape1@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Landscape1@2x.jpg"; sourceTree = SOURCE_ROOT; };
 		2A5105B6ED2A4379B09FDC23 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		A6A962D410ED4BCD96492073 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -96,6 +111,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2688CF25194D422E00C37DE3 /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				26B985C51933D2E300ED601E /* Landscape1.jpg */,
+				26B985C61933D2E300ED601E /* Landscape1@2x.jpg */,
+				2688CF32194D447F00C37DE3 /* Landscape2.jpg */,
+				2688CF33194D447F00C37DE3 /* Landscape2@2x.jpg */,
+				2688CF34194D447F00C37DE3 /* Landscape3.jpg */,
+				2688CF35194D447F00C37DE3 /* Landscape3@2x.jpg */,
+				2688CF36194D447F00C37DE3 /* Landscape4.jpg */,
+				2688CF37194D447F00C37DE3 /* Landscape4@2x.jpg */,
+			);
+			name = Media;
+			sourceTree = "<group>";
+		};
 		26B9857B19328BF500ED601E = {
 			isa = PBXGroup;
 			children = (
@@ -131,10 +161,9 @@
 		26B9858D19328BF500ED601E /* FullScreen */ = {
 			isa = PBXGroup;
 			children = (
+				2688CF25194D422E00C37DE3 /* Media */,
 				26B9858E19328BF500ED601E /* Supporting Files */,
 				26B9859F19328BF500ED601E /* Images.xcassets */,
-				26B985C51933D2E300ED601E /* Landscape.jpg */,
-				26B985C61933D2E300ED601E /* Landscape@2x.jpg */,
 				26B985BF19328FA100ED601E /* SSTStyleKit.h */,
 				26B985C019328FA100ED601E /* SSTStyleKit.m */,
 				26B9859619328BF500ED601E /* SSTAppDelegate.h */,
@@ -142,10 +171,12 @@
 				26B9859919328BF500ED601E /* Main.storyboard */,
 				26B985BC19328CC000ED601E /* SSTBaseNavigationController.h */,
 				26B985BD19328CC000ED601E /* SSTBaseNavigationController.m */,
-				26B9859C19328BF500ED601E /* SSTHideTopBarsViewController.h */,
-				26B9859D19328BF500ED601E /* SSTHideTopBarsViewController.m */,
-				26B985C219329EDD00ED601E /* SSTClearTopBarsViewController.h */,
-				26B985C319329EDD00ED601E /* SSTClearTopBarsViewController.m */,
+				26B9859C19328BF500ED601E /* SSTFirstViewController.h */,
+				26B9859D19328BF500ED601E /* SSTFirstViewController.m */,
+				26B985C219329EDD00ED601E /* SSTSecondViewController.h */,
+				26B985C319329EDD00ED601E /* SSTSecondViewController.m */,
+				2688CF22194D1A9000C37DE3 /* SSTThirdViewController.h */,
+				2688CF23194D1A9000C37DE3 /* SSTThirdViewController.m */,
 			);
 			path = FullScreen;
 			sourceTree = "<group>";
@@ -258,11 +289,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26B985C81933D2E300ED601E /* Landscape@2x.jpg in Resources */,
+				26B985C81933D2E300ED601E /* Landscape1@2x.jpg in Resources */,
+				2688CF3D194D447F00C37DE3 /* Landscape4@2x.jpg in Resources */,
 				26B985A019328BF500ED601E /* Images.xcassets in Resources */,
+				2688CF39194D447F00C37DE3 /* Landscape2@2x.jpg in Resources */,
+				2688CF3A194D447F00C37DE3 /* Landscape3.jpg in Resources */,
 				26B9859219328BF500ED601E /* InfoPlist.strings in Resources */,
 				26B9859B19328BF500ED601E /* Main.storyboard in Resources */,
-				26B985C71933D2E300ED601E /* Landscape.jpg in Resources */,
+				2688CF3C194D447F00C37DE3 /* Landscape4.jpg in Resources */,
+				2688CF38194D447F00C37DE3 /* Landscape2.jpg in Resources */,
+				26B985C71933D2E300ED601E /* Landscape1.jpg in Resources */,
+				2688CF3B194D447F00C37DE3 /* Landscape3@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,9 +354,10 @@
 				26B9859419328BF500ED601E /* main.m in Sources */,
 				26B985BE19328CC000ED601E /* SSTBaseNavigationController.m in Sources */,
 				26B9859819328BF500ED601E /* SSTAppDelegate.m in Sources */,
-				26B9859E19328BF500ED601E /* SSTHideTopBarsViewController.m in Sources */,
+				26B9859E19328BF500ED601E /* SSTFirstViewController.m in Sources */,
+				2688CF24194D1A9000C37DE3 /* SSTThirdViewController.m in Sources */,
 				26B985C119328FA100ED601E /* SSTStyleKit.m in Sources */,
-				26B985C419329EDD00ED601E /* SSTClearTopBarsViewController.m in Sources */,
+				26B985C419329EDD00ED601E /* SSTSecondViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

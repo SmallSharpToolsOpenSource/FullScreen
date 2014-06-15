@@ -1,5 +1,5 @@
 //
-//  SSTViewController.h
+//  SSTClearTopBarsViewController.h
 //  FullScreen
 //
 //  Created by Brennan Stehling on 5/25/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SSTHideTopBarsViewController : UIViewController
+@interface SSTSecondViewController : UIViewController
 
 @end

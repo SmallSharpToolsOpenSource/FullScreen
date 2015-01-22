@@ -191,8 +191,6 @@
 #pragma mark -
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    //NSLog(@"offset: %f", scrollView.contentOffset.y);
-    
     // adjust the top image view
     CGFloat topImageHeight = kTopImageHeight;
     CGFloat yPos = 0.0f;
@@ -206,11 +204,13 @@
     
     if (tableCell) {
         UICollectionView *collectionView = (UICollectionView *)[tableCell viewWithTag:kTagCollectionView];
+        NSAssert(collectionView, @"Collection View is required");
         if (collectionView) {
             NSArray *indexPaths = [collectionView indexPathsForVisibleItems];
             if (indexPaths.count) {
                 UICollectionViewCell *collectionCell = [collectionView cellForItemAtIndexPath:indexPaths[0]];
                 if (collectionCell) {
+                    NSAssert(!collectionCell.clipsToBounds, @"Cell must not clip to bounds");
                     UIImageView *imageView = (UIImageView *)[collectionCell viewWithTag:kTagImageView];
                     NSAssert(imageView, @"Image View is required");
                     CGRect frame = imageView.frame;

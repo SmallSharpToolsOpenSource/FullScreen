@@ -20,7 +20,7 @@
 
 #define kTagImageView 1
 
-@interface SSTThirdViewController () <UIScrollViewDelegate>
+@interface SSTThirdViewController () <UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -185,6 +185,13 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"Selected item %lu", (unsigned long)indexPath.item+1);
+}
+
+#pragma mark - UICollectionViewDelegateFlowLayout
+#pragma mark -
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CGSizeMake(CGRectGetWidth(self.view.bounds), 145.0);
 }
 
 #pragma mark - UIScrollViewDelegate
